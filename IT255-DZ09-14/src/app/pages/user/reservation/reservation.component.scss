@@ -1,0 +1,20 @@
+mat-header-cell,
+mat-cell {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  overflow: auto;
+}
+
+.search-box {
+  padding: 16px;
+  justify-content: center;
+}
+.center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.md-datepicker-calendar-pane {
+  z-index: 1200;
+}

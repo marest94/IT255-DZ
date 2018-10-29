@@ -1,0 +1,14 @@
+<section class="gallery-block compact-gallery">
+    <div class="container">
+        <div class="heading">
+            <h2>Photos of hotel</h2>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-6 col-lg-4 item zoom-on-hover" *ngFor="let img of assets">
+                <a class="lightbox">
+                    <img class="img-fluid image" src="{{img}}">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

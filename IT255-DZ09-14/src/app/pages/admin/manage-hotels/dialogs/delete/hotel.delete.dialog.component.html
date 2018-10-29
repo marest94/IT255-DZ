@@ -1,0 +1,13 @@
+<div>
+  <h3 mat-dialog-title>Are you sure?</h3>
+  <div mat-dialog-content>
+    Hotel name: {{hotel.name}}
+    <p></p>
+    Address: {{hotel.address}}
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
+    <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
+  </div>
+</div>

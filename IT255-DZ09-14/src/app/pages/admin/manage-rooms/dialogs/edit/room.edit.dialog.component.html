@@ -1,0 +1,103 @@
+<div class="container">
+  <h3 mat-dialog-title>Edit Room</h3>
+
+  <form (ngSubmit)="submit" #formControl="ngForm" role="form" [formGroup]="editRoomForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Room name" formControlName='roomName' name="roomName" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="roomName.invalid">
+          Room name is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Number of beds" formControlName='beds' type="number" name="beds"
+          required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="beds.invalid">
+          Number of beds is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Room size" formControlName='size' type="number" name="size" required
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="size.invalid">
+          Size of room is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Number of TVs" formControlName='tv' type="number" name="tv" required
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="tv.invalid">
+          Number of TVs is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Number of baths" formControlName='bath' type="number" name="bath"
+          required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="bath.invalid">
+          Number of baths is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input placeholder="Description" formControlName='description' name="description" required [errorStateMatcher]="matcher"></textarea>
+        <mat-error *ngIf="description.invalid">
+          Description of room is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Price" formControlName='price' type="number" name="price" required
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="price.invalid">
+          Price of room is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input type="text" placeholder="Picture url" formControlName='picUrl' name="picUrl" required [errorStateMatcher]="matcher"></textarea>
+        <mat-error *ngIf="picUrl.invalid">
+          Picture URL is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="Hotel" type="text"  formControlName='idHotel' name="idHotel" required [errorStateMatcher]="matcher">
+          <mat-option *ngFor="let hotel of hotels" [value]="hotel.id">
+            {{hotel.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="idHotel.invalid">
+          Hotel is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div mat-dialog-actions>
+      <button mat-button color="primary" [type]="submit" [disabled]="!editRoomForm.valid" [mat-dialog-close]="1" (click)="confirmEdit()">Save</button>
+      <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

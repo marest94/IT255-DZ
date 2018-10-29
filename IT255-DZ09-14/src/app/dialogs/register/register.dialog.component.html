@@ -1,0 +1,56 @@
+<div class="container">
+  <h3 mat-dialog-title>Register</h3>
+
+  <form (ngSubmit)="submit" #formControl="ngForm" role="form" [formGroup]="registerForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="First name" formControlName='firstName' name="firstName" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="firstName.invalid">
+          First Name must be minimum 2 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Last Name" formControlName='lastName' name="lastName" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="lastName.invalid">
+          Last Name must be minimum 2 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Email" formControlName="email" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="email.invalid">
+          Wrong email
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Username" formControlName='username' name="username" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="username.invalid">
+          Username must be minimum 5 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Password" formControlName='password' type="password" name="password" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="password.invalid">
+          Password must be minimum 5 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button color="primary" (click)="registerUser()" [disabled]="!registerForm.valid">Register</button>
+      <button mat-button tabindex="-1" (click)="onCancelClick()">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,147 @@
+<div style="height: 100vh;">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <div fxShow="true" fxHide.lt-md="true">
+                <a routerLink="/home" mat-button>
+                    <img src="../assets/logo.png" alt="" style="width: 120px;">
+                </a>
+            </div>
+
+            <span class="example-spacer"></span>
+
+            <div [ngSwitch]="true">
+                <div fxShow="show" fxHide.lt-md="true">
+
+                    <div *ngSwitchCase="role==='null'">
+                        <a routerLink="/about-us" mat-button>About Us</a>
+                        <a routerLink="/rooms" mat-button>Rooms</a>
+                        <a routerLink="/gallery" mat-button>Gallery</a>
+                        <a routerLink="/contact" mat-button>Contact</a>
+                    </div>
+
+                    <div *ngSwitchCase="role === 'user'">
+                        <a routerLink="/about-us" mat-button>About Us</a>
+                        <a routerLink="/rooms" mat-button>Rooms</a>
+                        <a routerLink="/gallery" mat-button>Gallery</a>
+                        <a routerLink="/contact" mat-button>Contact</a>
+                        <a routerLink="/reservations" mat-button>My Reservations</a>
+                    </div>
+
+                    <div *ngSwitchCase="role === 'admin'">
+                        <a routerLink="/manage-hotels" mat-button>Manage Hotels</a>
+                        <a routerLink="/manage-rooms" mat-button>Manage Rooms</a>
+                    </div>
+                </div>
+            </div>
+
+            <div fxShow="true">
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon>account_circle</mat-icon>
+                    {{username}}
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="login()" *ngIf="!isAuth">
+                        <mat-icon>input</mat-icon>Login</button>
+                    <button mat-menu-item (click)="register()" *ngIf="!isAuth">
+                        <mat-icon>add_circle_outline</mat-icon>Register</button>
+                    <button mat-menu-item (click)="logOut()" *ngIf="isAuth">
+                        <mat-icon>exit_to_app</mat-icon>Logout</button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill [ngSwitch]="true">
+        <mat-sidenav #sidenav>
+            <mat-nav-list *ngSwitchCase="role==='null'">
+                <a routerLink="/home" mat-list-item>
+                    <mat-icon>home</mat-icon>
+                    Home
+                </a>
+                <a routerLink="/about-us" mat-list-item>
+                    <mat-icon>info</mat-icon>
+                    About Us</a>
+                <a routerLink="/rooms" mat-list-item>
+                    <mat-icon>hotel</mat-icon>
+                    Rooms
+                </a>
+                <a routerLink="/gallery" mat-list-item>
+                    <mat-icon>photo</mat-icon>
+                    Gallery
+                </a>
+                <a routerLink="/contact" mat-list-item>
+                    <mat-icon>room</mat-icon>
+                    Contact
+                </a>
+                <a (click)="sidenav.toggle()" mat-list-item>
+                    <mat-icon>close</mat-icon> Close
+                </a>
+            </mat-nav-list>
+
+            <mat-nav-list *ngSwitchCase="role==='user'">
+                <a routerLink="/home" mat-list-item>
+                    <mat-icon>home</mat-icon>
+                    Home
+                </a>
+                <a routerLink="/reservations" mat-list-item>
+                    <mat-icon>shopping_cart</mat-icon>
+                    My reservations
+                </a>
+                <a routerLink="/about-us" mat-list-item>
+                    <mat-icon>info</mat-icon>
+                    About Us</a>
+                <a routerLink="/rooms" mat-list-item>
+                    <mat-icon>hotel</mat-icon>
+                    Rooms
+                </a>
+                <a routerLink="/gallery" mat-list-item>
+                    <mat-icon>photo</mat-icon>
+                    Gallery
+                </a>
+                <a routerLink="/contact" mat-list-item>
+                    <mat-icon>room</mat-icon>
+                    Contact
+                </a>
+                <a (click)="sidenav.toggle()" mat-list-item>
+                    <mat-icon>close</mat-icon>
+                    Close
+                </a>
+            </mat-nav-list>
+
+            <mat-nav-list *ngSwitchCase="role === 'admin'">
+                <a routerLink="/home" mat-list-item>
+                    <mat-icon>home</mat-icon>
+                    Home
+                </a>
+                <a routerLink="/manage-hotels" mat-list-item>
+                    <mat-icon>hotel</mat-icon>
+                    Manage Hotels</a>
+                <a routerLink="/manage-rooms" mat-list-item>
+                    <mat-icon>meeting_room</mat-icon>
+                    Manage Rooms
+                </a>
+                <a (click)="sidenav.toggle()" mat-list-item>
+                    <mat-icon>close</mat-icon>
+                    Close
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content fxFlexFill>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+    <footer id="main-footer" class="bg-dark text-white footer">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 ml-auto">
+                    <p class="lead">Copyright &copy; Marko Stojanovic 1983</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

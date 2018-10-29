@@ -1,0 +1,30 @@
+<div class="container">
+  <h3 mat-dialog-title>Add new Hotel</h3>
+
+  <form (ngSubmit)="submit" #formControl="ngForm" role="form" [formGroup]="addHotelForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Hotel name" formControlName='name' name="name" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="name.invalid">
+          Hotel name is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Hotel address" formControlName='address' name="address" required
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="address.invalid">
+          Address has to be longer
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button color="primary" [type]="submit" [disabled]="!addHotelForm.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

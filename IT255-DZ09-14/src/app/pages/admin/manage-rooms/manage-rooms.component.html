@@ -1,0 +1,91 @@
+<mat-toolbar color="primary">
+    <div class="center">
+        <span >Reload data:</span>
+        <button mat-icon-button (click)="refresh()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="mat-elevation-z8">
+    <div>
+      <mat-form-field floatPlaceholder="never" color="accent" class="search-box">
+        <input matInput #filter placeholder="Filter rooms">
+      </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="roomName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Roomname</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.roomName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="beds">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Beds</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.beds}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="size">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Size</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.size}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tv">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>TV</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.tv}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="bath">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Bath</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.bath}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.description}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.price}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="picUrl">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Picture</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.picUrl}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="idHotel">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Hotel</mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{room.idHotel}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" (click)="addNew()">
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </button>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let room; let i=index;">
+          <button mat-icon-button color="accent" (click)="startEdit(i, room.id, room.roomName, room.beds, room.size, room.tv, room.bath, room.description, room.picUrl, room.idHotel)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="accent" (click)="deleteItem(i, room.id, room.roomName, room.beds, room.size, room.tv, room.bath, room.description, room.picUrl, room.idHotel)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let room; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+
+    <div [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+      No results
+    </div>
+
+    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+
+  </div>

@@ -1,0 +1,80 @@
+<div class="page-header" [ngStyle]="{'background':'url('+url+')', 'background-repeat':'no-repeat'}">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-caption">
+                    <h1 class="page-title">{{room?.roomName}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-section">
+    <div class="container">
+        <div class="card-block bg-white mb30">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="section-title mb-0">
+                        <h2>Pick dates for resevation</h2>
+                    </div>
+                </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form [formGroup]="newReservationForm">
+                            <mat-form-field class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <input matInput [min]="now" [matDatepicker]="picker" placeholder="From date" formControlName="fromDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker (closed)="setMinFromDate()" #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <input matInput [min]="fromDate" [matDatepicker]="picker2" placeholder="To date" formControlName="toDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </form>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-center">
+                        <button mat-raised-button color="accent" (click)="reserveRoom()">Reserve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container" style="margin-bottom:50px;">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="well">
+                <h3>
+                    <b>More info</b>
+                </h3>
+                <hr>
+                <strong>
+                    <i class="fa fa-bed"></i> {{room?.beds}}</strong>
+                <hr>
+                <strong>
+                    <i class="icon ion-md-resize"> {{room?.size}} m2</i>
+                </strong>
+                <hr>
+                <strong>
+                    <i class="fa fa-tv"></i> {{room?.tv}}</strong>
+                <hr>
+                <strong>
+                    <i class="fa fa-bath"></i> {{room?.bath}}</strong>
+                <hr>
+                <strong>
+                    <i class="fa fa-building"></i> {{room?.idHotel}}</strong>
+                <hr>
+                <strong>
+                    <i class="fa fa-usd"></i> {{room?.price}}</strong>
+                <hr>
+            </div>
+
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12">
+            <h3>Description</h3>
+            <p>{{room?.description}}</p>
+        </div>
+    </div>
+</div>

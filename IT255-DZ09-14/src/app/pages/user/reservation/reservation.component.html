@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+  <div class="center">
+      <span >Reload data:</span>
+      <button mat-icon-button (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+  </div>
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filter reservations">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Room name</mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{reservation.idRoom}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fromDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>From date</mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{reservation.fromDate}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="toDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>To date</mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{reservation.toDate}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="days">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Number of days</mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{reservation.days}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{reservation.price}} $</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Manage reservation
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let reservation; let i=index;">
+        <button mat-icon-button color="accent" (click)="startEdit(i, reservation.id, reservation.fromDate, reservation.toDate, reservation.days, reservation.idRoom, reservation.price, reservation.idUser)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="deleteItem(i, reservation.id, reservation.fromDate, reservation.toDate, reservation.days, reservation.idRoom, reservation.price, reservation.idUser)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let reservations; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+    No results
+  </div>
+
+  <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>

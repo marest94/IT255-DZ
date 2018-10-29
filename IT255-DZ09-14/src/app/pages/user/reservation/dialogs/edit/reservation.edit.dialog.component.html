@@ -1,0 +1,33 @@
+<div class="container">
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+        <div>
+            <p>Room name: {{reservation.idRoom}}</p>
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput [min]="now" [matDatepicker]="picker" placeholder="Select new from date" [(ngModel)]="reservation.fromDate"
+                    name="fromDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker2" placeholder="Select new to date" [(ngModel)]="reservation.toDate" name="toDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 touchUi="true" (closed)="calculateNewReservation()"></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <p>Price: {{reservation.price}}</p>
+        </div>
+        <div>
+            <p>Number of days: {{reservation.days}}</p>
+        </div>
+    </form>
+    <div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+        <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
+    </div>
+</div>
