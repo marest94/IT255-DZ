@@ -1,0 +1,78 @@
+$icon-size: 55px;
+$dark-overlay: rgba(0, 0, 0, 0.7);
+
+.navbar {
+  .nav-link {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+  }
+
+  .nav-item.active {
+    border-left: #444 3px solid;
+  }
+}
+
+.lead,
+.display-3 {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.carousel-indicators--round li {
+  border-radius: 10px;
+  margin: 1px 3px;
+  height: 10px;
+  max-width: 10px;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+.carousel-indicators .active {
+  background-color: #fff;
+  max-width: 12px;
+  margin: 0 3px;
+  height: 12px;
+}
+
+.carousel-item {
+  height: 450px;
+}
+
+.carousel-image-1 {
+  background: url("../img/img1.jpg");
+  background-size: cover;
+}
+
+.carousel-image-2 {
+  background: url("../img/img2.jpg");
+  background-size: cover;
+}
+
+.carousel-image-3 {
+  background: url("../img/img3.jpg");
+  background-size: cover;
+}
+
+.fa {
+  font-size: $icon-size;
+}
+
+#home-heading {
+  position: relative;
+  min-height: 200px;
+  background: url("../img/img4.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #fff;
+}
+
+.dark-overlay {
+  position: absolute;
+  background-color: $dark-overlay;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
